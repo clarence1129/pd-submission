@@ -2,30 +2,157 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio | Projects</title>
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
     <!-- Custom CSS -->
     <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
 
-        /* Sky blue background */
         body {
-            background-color: #DFF4FF;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            min-height: 100vh;
+            color: #e0e0e0;
+            position: relative;
+            overflow-x: hidden;
         }
 
-        /* Pastel pink navbar */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(0, 245, 255, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 0, 110, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+            animation: gradientShift 8s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% {
+                background: 
+                    radial-gradient(circle at 20% 50%, rgba(0, 245, 255, 0.08) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 80%, rgba(255, 0, 110, 0.08) 0%, transparent 50%);
+            }
+            50% {
+                background: 
+                    radial-gradient(circle at 80% 50%, rgba(0, 245, 255, 0.12) 0%, transparent 50%),
+                    radial-gradient(circle at 20% 80%, rgba(255, 0, 110, 0.12) 0%, transparent 50%);
+            }
+        }
+
+        body > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Modern Navbar */
         .navbar {
-            background-color: #FFC6D9 !important;
+            background: rgba(15, 20, 41, 0.95) !important;
+            box-shadow: 0 2px 20px rgba(0, 245, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 245, 255, 0.15);
+            position: relative;
+            z-index: 1000;
         }
-        .navbar .navbar-brand,
+
+        .navbar-brand {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem !important;
+            font-weight: 700 !important;
+            background: linear-gradient(135deg, #00f5ff 0%, #ff006e 50%, #00f5ff 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 6px rgba(0, 245, 255, 0.4)) drop-shadow(0 0 10px rgba(255, 0, 110, 0.2));
+            text-shadow: 0 0 12px rgba(0, 245, 255, 0.3), 0 0 20px rgba(255, 0, 110, 0.15);
+            animation: gradientShiftBrand 3s ease infinite;
+            transition: filter 0.3s ease;
+        }
+
+        .navbar-brand:hover {
+            filter: drop-shadow(0 0 10px rgba(0, 245, 255, 0.5)) drop-shadow(0 0 15px rgba(255, 0, 110, 0.3));
+        }
+
+        /* Logo Image */
+        .navbar-logo {
+            width: 60px;
+            height: 60px;
+            margin-right: 0.8rem;
+            border-radius: 50%;
+            object-fit: cover;
+            filter: drop-shadow(0 0 6px rgba(0, 245, 255, 0.4)) drop-shadow(0 0 10px rgba(255, 0, 110, 0.2));
+            text-shadow: 0 0 12px rgba(0, 245, 255, 0.3), 0 0 20px rgba(255, 0, 110, 0.15);
+            animation: gradientShiftBrand 3s ease infinite;
+            transition: filter 0.3s ease;
+            display: inline-block;
+        }
+
+        .navbar-brand:hover .navbar-logo {
+            filter: drop-shadow(0 0 10px rgba(0, 245, 255, 0.5)) drop-shadow(0 0 15px rgba(255, 0, 110, 0.3));
+        }
+
+        @keyframes gradientShiftBrand {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
         .navbar .nav-link {
-            color: #4A4A4A !important;
-            font-weight: 600;
+            color: #e0e0e0 !important;
+            font-weight: 500;
+            margin: 0 0.5rem;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
         }
+
+        .navbar .nav-link:hover {
+            color: #00f5ff !important;
+            text-shadow: 0 0 10px rgba(0, 245, 255, 0.5);
+        }
+
         .navbar .nav-link.active {
-            text-decoration: underline;
+            color: #00f5ff !important;
+            text-shadow: 0 0 10px rgba(0, 245, 255, 0.5);
+        }
+
+        .page-header {
+            padding: 3rem 0 2rem 0;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #00f5ff 0%, #ff006e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p {
+            color: #b0b0b0;
         }
 
         /* Smooth fade-in animation */
@@ -43,30 +170,88 @@
         }
 
         /* Card hover effect */
-        .card {
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        .project-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
             border-radius: 15px;
             overflow: hidden;
-            background-color: white; /* Keep white for cards */
+            background-color: rgba(25, 35, 70, 0.8);
+            border: 2px solid rgba(0, 245, 255, 0.1);
+            box-shadow: 0 5px 20px rgba(0, 245, 255, 0.1);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
         }
 
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-top: 3px solid #00f5ff;
+            box-shadow: 0 15px 40px rgba(0, 245, 255, 0.4), 0 0 20px rgba(255, 0, 110, 0.2);
         }
 
-        /* Image bottom border for clean look */
-        .card img {
-            border-bottom: 3px solid #eaeaea;
+        .project-card:hover .card-title {
+            color: #00f5ff;
+            text-shadow: 0 0 10px rgba(0, 245, 255, 0.5);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-bottom: 3px solid rgba(0, 245, 255, 0.1);
+        }
+
+        .project-card .card-body {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 2rem;
+        }
+
+        .project-card .card-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #e0e0e0;
+            margin-bottom: 1rem;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        .project-card .card-text {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #b0b0b0;
+            flex-grow: 1;
+        }
+
+        .projects-container {
+            padding: 3rem 0;
+        }
+
+        footer {
+            background: rgba(15, 20, 41, 0.6);
+            border-top: 1px solid rgba(0, 245, 255, 0.2);
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            color: #b0b0b0;
+            margin: 0;
         }
     </style>
 </head>
 <body>
 
 <!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg">
+<nav class="navbar navbar-expand-lg sticky-top">
   <div class="container">
-    <a class="navbar-brand" href="index.html">MyPortfolio</a>
+    <a class="navbar-brand" href="index.html">
+      <img src="logo2.png" alt="Logo" class="navbar-logo">
+      Clarence
+    </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -82,48 +267,89 @@
   </div>
 </nav>
 
-<!-- PORTFOLIO GRID -->
-<div class="container py-5">
-    <h1 class="mb-4 text-center">My Projects</h1>
+<!-- PAGE HEADER -->
+<div class="page-header container">
+    <h1>My Projects</h1>
+    <p class="text-muted">A collection of creative and technical work</p>
+</div>
 
-    <div class="row g-4 justify-content-center">
+<!-- PORTFOLIO GRID -->
+<div class="container projects-container">
+    <div class="row g-4">
 
         <!-- Project 1 -->
-        <div class="col-md-5 fade-in" style="animation-delay: 0.1s;">
-            <div class="card shadow h-100">
-                <img src="vr.jpg" class="card-img-top">
+        <div class="col-lg-6 fade-in" style="animation-delay: 0.1s;">
+            <a href="project-vr-escape-room.html" class="project-card">
+                <img src="vr.jpg" alt="VR Escape Room">
                 <div class="card-body">
-                    <h5 class="card-title fw-bold">VR Escape Room Unity</h5>
+                    <h5 class="card-title">VR Escape Room Unity</h5>
                     <p class="card-text">
-                        The VR Escape Room is an immersive, multi-puzzle experience designed and developed in Unity. Players navigate a virtual environment where they interact with objects, solve logical puzzles, and uncover hidden secrets to progress through the game. The project incorporates teleportation mechanics, realistic object interactions, and carefully crafted puzzle logic to create an engaging and interactive experience.
-                        <br><br>
-                        Every puzzle is designed to challenge problem-solving skills while maintaining a smooth and intuitive flow, ensuring that players feel both challenged and rewarded. The environment is fully immersive, with attention to visual aesthetics, sound design, and spatial interactions, making it a compelling VR experience that combines creativity, design thinking, and technical development.
-                        <br><br>
+                        An immersive, multi-puzzle experience designed and developed in Unity. Players navigate a virtual environment where they interact with objects, solve logical puzzles, and uncover hidden secrets to progress through the game. Features include teleportation mechanics, realistic object interactions, and carefully crafted puzzle logic.
+                    </p>
+                    <p class="card-text">
                         This project demonstrates my ability to design interactive gameplay, implement VR mechanics, and create a cohesive user experience that is both fun and engaging.
                     </p>
                 </div>
-            </div>
+            </a>
         </div>
 
         <!-- Project 2 -->
-        <div class="col-md-5 fade-in" style="animation-delay: 0.3s;">
-            <div class="card shadow h-100">
-                <img src="shop.jpg" class="card-img-top">
+        <div class="col-lg-6 fade-in" style="animation-delay: 0.3s;">
+            <a href="project-ecommerce.html" class="project-card">
+                <img src="shop.jpg" alt="Figma Website">
                 <div class="card-body">
-                    <h5 class="card-title fw-bold">Figma Website</h5>
+                    <h5 class="card-title">E-Commerce Website Prototype</h5>
                     <p class="card-text">
-                        The Shopping Website (Figma) is a minimalistic e-commerce prototype designed to deliver a clean, modern, and intuitive shopping experience. Using Figma, I created a fully structured layout including product pages, shopping cart interactions, and navigation flows that prioritize usability and visual clarity.
-                        <br><br>
-                        The project focuses on user-centered design, ensuring that every element — from product images and descriptions to buttons and menus — guides the user naturally through the shopping journey. Color schemes, typography, and spacing were carefully chosen to create a modern and cohesive aesthetic.
-                        <br><br>
-                        This project highlights my ability to translate design concepts into interactive prototypes, plan seamless user flows, and create visually appealing interfaces that are ready for development. It demonstrates my skills in UI/UX design, prototyping, and digital storytelling, offering a professional and engaging shopping experience.
+                        A minimalistic e-commerce prototype designed using Figma with a clean, modern, and intuitive shopping experience. Includes fully structured layouts for product pages, shopping cart interactions, and navigation flows that prioritize usability and visual clarity.
+                    </p>
+                    <p class="card-text">
+                        This project highlights my ability to translate design concepts into interactive prototypes, plan seamless user flows, and create visually appealing interfaces ready for development.
                     </p>
                 </div>
-            </div>
+            </a>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="col-lg-6 fade-in" style="animation-delay: 0.5s;">
+            <a href="project-notes-website.html" class="project-card">
+                <img src="Studynote1.png" alt="Notes Website">
+                <div class="card-body">
+                    <h5 class="card-title">Notes Website</h5>
+                    <p class="card-text">
+                        A full-stack note management platform with user authentication, note creation/editing/deletion, and support for file uploads. Users can register accounts, securely log in, and organize their notes with photos and documents.
+                    </p>
+                    <p class="card-text">
+                        Built with React frontend and Java backend, this project demonstrates modern web development practices including authentication flows, API integration, and responsive design across all devices.
+                    </p>
+                </div>
+            </a>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="col-lg-6 fade-in" style="animation-delay: 0.7s;">
+            <a href="project-learn-rp.html" class="project-card">
+                <img src="Figma RP app.png" alt="Learn@RP">
+                <div class="card-body">
+                    <h5 class="card-title">Learn@RP</h5>
+                    <p class="card-text">
+                        A comprehensive academic management application designed to help students track learning progress, manage assignments, and stay informed about exam dates. Features intuitive dashboards and progress analytics.
+                    </p>
+                    <p class="card-text">
+                        This project showcases my UI/UX design expertise with complete design systems, interactive prototypes, and user-centered interface design. Built with a focus on usability and student needs.
+                    </p>
+                </div>
+            </a>
         </div>
 
     </div>
 </div>
+
+<!-- Footer -->
+<footer class="text-center">
+    <div class="container">
+        <p>&copy; 2026 Clarence Phua. All rights reserved.</p>
+    </div>
+</footer>
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
